@@ -1,6 +1,3 @@
-# callbacks
-
-
 from aiogram import Router, F
 from aiogram.types import CallbackQuery
 from service import *
@@ -27,8 +24,7 @@ async def show_vacancy(callback: CallbackQuery):
 Статус: {vacancy['status']}
 """
     await callback.message.answer_photo(
-        photo=vacancy["photo_file_id"],
-        caption=text,
+        photo=vacancy["photo_file_id"], caption=text,
         reply_markup=back_kb(vacancy_id)
     )
     await callback.answer()

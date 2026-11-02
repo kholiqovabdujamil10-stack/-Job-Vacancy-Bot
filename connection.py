@@ -28,19 +28,15 @@ async def create_table():
                 salary NUMERIC(12, 2) NOT NULL CHECK (salary > 0),
                 description TEXT NOT NULL,
                 photo_file_id TEXT NOT NULL,
-                status TEXT DEFAULT 'open'
-                    CHECK (status IN ('open', 'closed')),
+                status TEXT DEFAULT 'open' CHECK (status IN ('open', 'closed')),
                 created_at TIMESTAMP DEFAULT NOW()
             );
 
             CREATE TABLE IF NOT EXISTS applications (
                 id SERIAL PRIMARY KEY,
                 user_id BIGINT NOT NULL,
-                vacancy_id INTEGER NOT NULL
-                    REFERENCES vacancies(id) ON DELETE CASCADE,
+                vacancy_id INTEGER NOT NULL REFERENCES vacancies(id) ON DELETE CASCADE,
                 applied_at TIMESTAMP DEFAULT NOW(),
-
-                UNIQUE(user_id, vacancy_id)
             );
         """)
 
